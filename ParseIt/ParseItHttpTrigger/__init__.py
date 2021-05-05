@@ -13,7 +13,8 @@ def match_class(target):
     return do_match  
 
 def handle_rails_library():
-    resp = requests.get('https://www.railslibraries.info/jobs')
+    # field_county_value[]=415&
+    resp = requests.get('https://www.railslibraries.info/jobs?field_county_value[]=280&field_county_value[]=505&field_county_value[]=525&field_building_name_value=&title=')
     soup = BeautifulSoup(resp.content, 'html.parser')
     new_soup = BeautifulSoup('<div></div>', 'html.parser')
     soup_ele = soup.find("div", {"id": "content"})
