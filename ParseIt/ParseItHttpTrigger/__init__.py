@@ -152,12 +152,30 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     #          status_code=200
     #     )
     new_soup = BeautifulSoup('<b>Library Job Search</b>', 'html.parser')
-    
-    new_soup.append(handle_rails_library())
-    new_soup.append(handle_augustana())
-    new_soup.append(handle_rivershare())
-    new_soup.append(handle_stambrose())
-    new_soup.append(handle_eicc())
+    try:
+        new_soup.append(handle_rails_library())
+    except:
+        logging.info("unable to parse rails")
+        
+    try:    
+        new_soup.append(handle_augustana())
+    except:
+        logging.info("unable to parse augustana")
+        
+    try:
+        new_soup.append(handle_rivershare())
+    except:
+        logging.info("unable to parse rivershare")
+        
+    try:    
+        new_soup.append(handle_stambrose())
+    except:
+        logging.info("unable to parse stambrose")
+        
+    try:
+        new_soup.append(handle_eicc())
+    except:
+        logging.info("unable to parse eicc")
     return func.HttpResponse(
              new_soup.prettify(),
              status_code=200
